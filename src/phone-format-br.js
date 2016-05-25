@@ -6,74 +6,24 @@ angular.module('phone-format-br', []).filter('phoneFormatBr', function () {
 
     var N = raw.length;
     var result = '';
-    var specialPrefixes = [
-      '0300', '0500', '0800', '0900', '3003', '4003', '4004'
-    ];
     var f = raw.substring(0,4);
-
-    if (specialPrefixes.indexOf(f) !== -1) {
-      var s = raw.substring(4,7);
-      var t = raw.substring(7, N);
-
-      if (t) {
-        result = f + " " + s + " " + t;
-      } else if(s) {
-        result = f + " " + s;
-      } else {
-        result = f;
-      }
-    } else {
-      if (N <= 5) {
-        result = raw;
+      if (N < 3) {
+        return raw;
       } else {
         var ddd;
         var prefix;
         var lastFour;
         var cel;
-
-        ddd = raw.substring(0,2);
-
-        if (ddd === '55') {
-          ddd = raw.substring(2,4);
-          cel = raw[4];
-
-          if (cel === '9') {
-            prefix = raw.substring(4, 8);
-            lastFour = raw.substring(8, N);
-          } else if (cel !== '9' && N === 11) {
-            prefix = raw.substring(4, 7);
-            lastFour = raw.substring(7, N);
-          } else {
-            prefix = raw.substring(4, 8);
-            lastFour = raw.substring(8, N);
-          }
-
-          result += '(' + ddd + ') ' + prefix + '-' + lastFour;
-        } else {
-          if (N === 9) {
-            prefix = raw.substring(2, 5);
-            lastFour = raw.substring(5, N);
-          } else {
-            cel = raw.substring(2, 3);
-            if (cel === '9') {
-              prefix = raw.substring(2, 7);
-              lastFour = raw.substring(7, N);
-            } else {
-              prefix = raw.substring(2, 6);
-              lastFour = raw.substring(6, N);
-            }
-          }
-
-          if (lastFour) {
-            result += '(' + ddd + ') ' + prefix + '-' + lastFour;
-          } else {
-            result += '(' + ddd + ') ' + prefix;
-          }
+        if (N == 3) {
+          return result = '(' + raw.substring(0,3) + ') '
+        } else if (N == 6) {
+          return result = '(' + raw.substring(0, 3) + ') ' + raw.substring(3, 6);
+        } else if (N == 8) {
+          return result = '(' + raw.substring(0, 3) + ') ' + raw.substring(3, 6) + ' ' + raw.substring(6, 8) ;
+        } else if (N == 10){
+          return result = '(' + raw.substring(0, 3) + ') ' + raw.substring(3, 6) + ' ' + raw.substring(6, 8) + ' ' + raw.substring(8, 10) ;
         }
       }
-    }
-
-    return result;
   };
 
   return _formatPhone;
