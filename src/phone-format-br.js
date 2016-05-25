@@ -7,12 +7,10 @@ angular.module('phone-format-br', []).filter('phoneFormatBr', function () {
     var N = raw.length;
     var result = '';
     var f = raw.substring(0,4);
-      if (N < 3) {
+      if (N <= 3) {
         return raw;
       } else {
-        if (N == 3) {
-          return result = '(' + raw.substring(0,3) + ') '
-        } else if (N < 6) {
+        if (N < 6) {
           return result = '(' + raw.substring(0,3) + ') ' + raw.substring(3,N);
         } else if (N == 6) {
           return result = '(' + raw.substring(0, 3) + ') ' + raw.substring(3, 6);
