@@ -10,16 +10,18 @@ angular.module('phone-format-br', []).filter('phoneFormatBr', function () {
       if (N < 3) {
         return raw;
       } else {
-        var ddd;
-        var prefix;
-        var lastFour;
-        var cel;
         if (N == 3) {
           return result = '(' + raw.substring(0,3) + ') '
+        } else if (N < 6) {
+          return result = '(' + raw.substring(0,3) + ') ' + raw.substring(3,N);
         } else if (N == 6) {
           return result = '(' + raw.substring(0, 3) + ') ' + raw.substring(3, 6);
+        } else if (N < 8) {
+          return result = '(' + raw.substring(0, 3) + ') ' + raw.substring(3, 6) + ' ' + raw.substring(6,N);
         } else if (N == 8) {
           return result = '(' + raw.substring(0, 3) + ') ' + raw.substring(3, 6) + ' ' + raw.substring(6, 8) ;
+        } else if (N == 10){
+          return result = '(' + raw.substring(0, 3) + ') ' + raw.substring(3, 6) + ' ' + raw.substring(6, 8) + ' ' + raw.substring(8,N);
         } else if (N == 10){
           return result = '(' + raw.substring(0, 3) + ') ' + raw.substring(3, 6) + ' ' + raw.substring(6, 8) + ' ' + raw.substring(8, 10) ;
         }
