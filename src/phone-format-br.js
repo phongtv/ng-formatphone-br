@@ -14,14 +14,10 @@ angular.module('phone-format-br', []).filter('phoneFormatBr', function () {
           return result = '(' + raw.substring(0,3) + ') ' + raw.substring(3,N);
         } else if (N == 6) {
           return result = '(' + raw.substring(0, 3) + ') ' + raw.substring(3, 6);
-        } else if (N < 8) {
-          return result = '(' + raw.substring(0, 3) + ') ' + raw.substring(3, 6) + ' ' + raw.substring(6,N);
-        } else if (N == 8) {
-          return result = '(' + raw.substring(0, 3) + ') ' + raw.substring(3, 6) + ' ' + raw.substring(6, 8) ;
         } else if (N < 10){
-          return result = '(' + raw.substring(0, 3) + ') ' + raw.substring(3, 6) + ' ' + raw.substring(6, 8) + ' ' + raw.substring(8,N);
+          return result = '(' + raw.substring(0, 3) + ') ' + raw.substring(3, 6) + ' ' + raw.substring(6, N);
         } else if (N == 10){
-          return result = '(' + raw.substring(0, 3) + ') ' + raw.substring(3, 6) + ' ' + raw.substring(6, 8) + ' ' + raw.substring(8, 10) ;
+          return result = '(' + raw.substring(0, 3) + ') ' + raw.substring(3, 6) + ' ' + raw.substring(6, 10) ;
         }
       }
   };
