@@ -61,8 +61,10 @@ angular.module('phone-format-br', []).filter('phoneFormatBr', function () {
       });
 
       elem.bind('keyup', function (e) {
-        var currVal = elem.val();
-        elem.val(_applyFormat(currVal));
+        if (e.keyCode < 37 || e.keyCode > 40) {
+          var currVal = elem.val();
+          elem.val(_applyFormat(currVal));
+        }
       });
     }
   };
